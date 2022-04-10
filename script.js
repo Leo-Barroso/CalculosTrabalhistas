@@ -6,7 +6,7 @@ function CalcularSalario() {
     var OutrosDescontos = Number(document.getElementById('OutrosDescontos').value)
     var OutrasReceitas = Number(document.getElementById('OutrasReceitas').value)
     const AliquotaINSS = [0.075, 0.09, 0.12, 0.14]
-    const ValorDeducaoINSS = [0.00, 16.50, 82.60, 148.71] 
+    const ValorDeducaoINSS = [0.00, 18.18, 91.00, 163.82] 
     var ValorDescontoINSS;
     var SalarioLiquido;
     var OutrosDescontos;
@@ -26,27 +26,27 @@ function CalcularSalario() {
     
 
 
-    if (SalarioBruto <= 1100.00) {
+    if (SalarioBruto <= 1212.00) {
         ValorDescontoINSS = SalarioBruto * AliquotaINSS[0] - ValorDeducaoINSS[0]
         document.getElementById('AliquotaINSS').innerText = (AliquotaINSS[0] * 100) + '%'
         document.getElementById('DescontoINSS').innerText = ValorDescontoINSS.toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})
 
-    } else if (SalarioBruto >= 1100.01 && SalarioBruto <= 2203.48) {
+    } else if (SalarioBruto >= 1212.01 && SalarioBruto <= 2427.35) {
         ValorDescontoINSS = SalarioBruto * AliquotaINSS[1] - ValorDeducaoINSS[1] 
         document.getElementById('AliquotaINSS').innerText = (AliquotaINSS[1] * 100).toFixed() + '%'
         document.getElementById('DescontoINSS').innerText = ValorDescontoINSS.toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})
 
-    } else if (SalarioBruto >= 2203.49 && SalarioBruto <= 3305.22) {
+    } else if (SalarioBruto >= 2427.36 && SalarioBruto <= 3646.03) {
         ValorDescontoINSS = SalarioBruto * AliquotaINSS[2] - ValorDeducaoINSS[2] 
         document.getElementById('AliquotaINSS').innerText = (AliquotaINSS[2] * 100).toFixed() + '%'
         document.getElementById('DescontoINSS').innerText = ValorDescontoINSS.toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})
 
-    } else if (SalarioBruto >= 3305.23 && SalarioBruto <= 6433.57) {
+    } else if (SalarioBruto >= 3646.04 && SalarioBruto <= 7087.22) {
         ValorDescontoINSS = SalarioBruto * AliquotaINSS[3] - ValorDeducaoINSS[3] 
         document.getElementById('AliquotaINSS').innerText = (AliquotaINSS[3] * 100).toFixed() + '%'
         document.getElementById('DescontoINSS').innerText = ValorDescontoINSS.toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})
 
-    } else if (SalarioBruto > 6433.58) {
+    } else if (SalarioBruto > 7087.22) {
         ValorDescontoINSS = SalarioBruto * AliquotaINSS[3] - ValorDeducaoINSS[3]
         
         if (ValorDescontoINSS >= 751.99) {
