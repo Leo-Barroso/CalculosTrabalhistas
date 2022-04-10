@@ -6,7 +6,11 @@ function CalcularSalario() {
     var OutrosDescontos = Number(document.getElementById('OutrosDescontos').value)
     var OutrasReceitas = Number(document.getElementById('OutrasReceitas').value)
     const AliquotaINSS = [0.075, 0.09, 0.12, 0.14]
+<<<<<<< HEAD
     const ValorDeducaoINSS = [0.00, 18.18, 91.00, 163.82] 
+=======
+    const ValorDeducaoINSS = [0.00, 16.50, 82.60, 148.71]
+>>>>>>> 50250518e2696e4fdc5dad9a085f638275b9b636
     var ValorDescontoINSS;
     var SalarioLiquido;
     var OutrosDescontos;
