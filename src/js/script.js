@@ -13,13 +13,16 @@ function CalcularSalario() {
     var SalarioBrutoInput = document.getElementById('SalarioBruto')
     var OutrosDescontos = Number(document.getElementById('OutrosDescontos').value)
     var OutrasReceitas = Number(document.getElementById('OutrasReceitas').value)
-    // var ValeTransporte = Number(document.getElementById('valeTransporte').value)
+    var ValeTransporte = document.getElementById('valeTransporte').value
+
     const AliquotaINSS = [0.075, 0.09, 0.12, 0.14]
     const ValorDeducaoINSS = [0.00, 19.53, 96.67, 173.81]
+    
     var ValorDescontoINSS;
     var SalarioLiquido;
     var OutrosDescontos;
     var TotalDescontos;
+    var BaseCalculo;
 
     const faixa_01 = SalarioBruto <= 1302.00;
     const faixa_02 = SalarioBruto >= 1302.01 && SalarioBruto <= 2571.29;
@@ -76,21 +79,26 @@ function CalcularSalario() {
         document.getElementById('DescontoINSS').innerText = formatValue(ValorDescontoINSS)
     }
 
-    SalarioLiquido = SalarioBruto - ValorDescontoINSS 
-    SalarioLiquido = SalarioLiquido - CalcularIRRF(SalarioLiquido) + OutrasReceitas - OutrosDescontos
-    // ValeTransporte = (SalarioBruto * ValeTransporte) / 100
-    TotalDescontos = ValorDescontoINSS + OutrosDescontos + ValorDescontoIRRF;
+    if(ValeTransporte == 'S') {
+        ValeTransporte = SalarioBruto * 0.06
+    } else {
+        ValeTransporte = 0.00
+    }
 
-    window.document.getElementById('SalarioLiquido').innerHTML = formatValue(SalarioLiquido)
-    window.document.getElementById('SalarioBrutoInput').innerHTML = formatValue(SalarioBruto)
-    window.document.getElementById('OutrosDescontosInput').innerHTML = formatValue(OutrosDescontos)
-    window.document.getElementById('TotalDescontos').innerHTML = formatValue(TotalDescontos)
-    window.document.getElementById('OutrasReceitasInput').innerHTML = formatValue(OutrasReceitas)
-    // window.document.getElementById('ValeTransporteInput').innerHTML = formatValue(ValeTransporte)
+    BaseCalculo = SalarioBruto - ValorDescontoINSS
+    SalarioLiquido = SalarioBruto - ValorDescontoINSS - ValeTransporte
+    SalarioLiquido = SalarioLiquido - CalcularIRRF(BaseCalculo) + OutrasReceitas - OutrosDescontos    
+    TotalDescontos = ValorDescontoINSS + OutrosDescontos + ValorDescontoIRRF + ValeTransporte;
+
+    document.getElementById('SalarioLiquido').innerHTML = formatValue(SalarioLiquido)
+    document.getElementById('SalarioBrutoInput').innerHTML = formatValue(SalarioBruto)
+    document.getElementById('OutrosDescontosInput').innerHTML = formatValue(OutrosDescontos)
+    document.getElementById('TotalDescontos').innerHTML = formatValue(TotalDescontos)
+    document.getElementById('OutrasReceitasInput').innerHTML = formatValue(OutrasReceitas)
+    document.getElementById('ValeTransporteInput').innerHTML = formatValue(ValeTransporte)
 }
 
 var ValorDescontoIRRF;
-
 function CalcularIRRF(BaseDeCalculo) {
     const AliquotaIRRF = [0.00, 0.075, 0.15,0.225, 0.275];
     const ValorDeducaoIRRF = [0.00, 142.80, 354.80, 636.13, 869.36]
