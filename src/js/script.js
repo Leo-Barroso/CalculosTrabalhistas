@@ -14,13 +14,14 @@ function CalcularSalario() {
     var OutrosDescontos = Number(document.getElementById('OutrosDescontos').value)
     var OutrasReceitas = Number(document.getElementById('OutrasReceitas').value)
     var ValeTransporte = document.getElementById('valeTransporte').value
+    var Dependentes = Number(document.getElementById('dependentes').value)
 
     const AliquotaINSS = [0.075, 0.09, 0.12, 0.14]
     const ValorDeducaoINSS = [0.00, 19.53, 96.67, 173.81]
     
     var ValorDescontoINSS;
     var SalarioLiquido;
-    var OutrosDescontos;
+    // var OutrosDescontos;
     var TotalDescontos;
     var BaseCalculo;
 
