@@ -1,5 +1,5 @@
 function formatPercent(value) {
-    value = value.toFixed() + '%'
+    value = value.toFixed(2) + '%'
     return value
 }
 
