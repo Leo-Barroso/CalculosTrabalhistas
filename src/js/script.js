@@ -14,22 +14,20 @@ function CalcularSalario() {
     var OutrosDescontos = Number(document.getElementById('OutrosDescontos').value)
     var OutrasReceitas = Number(document.getElementById('OutrasReceitas').value)
     var ValeTransporte = document.getElementById('valeTransporte').value
-    var Dependentes = Number(document.getElementById('dependentes').value)
 
     const AliquotaINSS = [0.075, 0.09, 0.12, 0.14]
-    const ValorDeducaoINSS = [0.00, 19.53, 96.67, 173.81]
+    const ValorDeducaoINSS = [0.00, 21.18, 101.18, 181.18]
     
     var ValorDescontoINSS;
     var SalarioLiquido;
-    // var OutrosDescontos;
     var TotalDescontos;
     var BaseCalculo;
 
-    const faixa_01 = SalarioBruto <= 1302.00;
-    const faixa_02 = SalarioBruto >= 1302.01 && SalarioBruto <= 2571.29;
-    const faixa_03 = SalarioBruto >= 2571.30 && SalarioBruto <= 3856.94;
-    const faixa_04 = SalarioBruto >= 3856.95 && SalarioBruto <= 7507.49;
-    const faixa_05 = SalarioBruto > 7507.49;
+    const faixa_01 = SalarioBruto <= 1412.00;
+    const faixa_02 = SalarioBruto >= 1412.01 && SalarioBruto <= 2666.68;
+    const faixa_03 = SalarioBruto >= 2666.69 && SalarioBruto <= 4000.03;
+    const faixa_04 = SalarioBruto >= 4000.04 && SalarioBruto <= 7786.49;
+    const faixa_05 = SalarioBruto > 7786.49;
 
     if (!OutrosDescontos) {
         OutrosDescontos = 0.00;
@@ -71,16 +69,14 @@ function CalcularSalario() {
 
     } else if (faixa_05) {
         ValorDescontoINSS = SalarioBruto * AliquotaINSS[3] - ValorDeducaoINSS[3]
-        
-        if (ValorDescontoINSS >= 751.99) {
-            ValorDescontoINSS = 751.99
+        if (ValorDescontoINSS >= 876.97) {
+            ValorDescontoINSS = 876.97
         }
-
         document.getElementById('AliquotaINSS').innerText = formatPercent((AliquotaINSS[3] * 100))
         document.getElementById('DescontoINSS').innerText = formatValue(ValorDescontoINSS)
     }
 
-    if(ValeTransporte == 'S') {
+    if (ValeTransporte == 'S') {
         ValeTransporte = SalarioBruto * 0.06
     } else {
         ValeTransporte = 0.00
@@ -97,18 +93,24 @@ function CalcularSalario() {
     document.getElementById('TotalDescontos').innerHTML = formatValue(TotalDescontos)
     document.getElementById('OutrasReceitasInput').innerHTML = formatValue(OutrasReceitas)
     document.getElementById('ValeTransporteInput').innerHTML = formatValue(ValeTransporte)
+    document.getElementById('inss').innerHTML = formatValue(ValorDescontoINSS)
+    document.getElementById('irrf').innerHTML = formatValue(ValorDescontoINSS)
 }
 
 var ValorDescontoIRRF;
 function CalcularIRRF(BaseDeCalculo) {
     const AliquotaIRRF = [0.00, 0.075, 0.15,0.225, 0.275];
-    const ValorDeducaoIRRF = [0.00, 142.80, 354.80, 636.13, 869.36]
+    const ValorDeducaoIRRF = [0.00, 169.44, 381.44, 662.77, 896.00];
+    const DeducaoPorDependente = 189.59;
 
-    const base_01 = BaseDeCalculo <= 1903.98
-    const base_02 = BaseDeCalculo >= 1903.99 && BaseDeCalculo <= 2826.65
+    const base_01 = BaseDeCalculo <= 2112.00
+    const base_02 = BaseDeCalculo >= 2112.01 && BaseDeCalculo <= 2826.65
     const base_03 = BaseDeCalculo >= 2826.66 && BaseDeCalculo <= 3751.05
     const base_04 = BaseDeCalculo >= 3751.06 && BaseDeCalculo <= 4664.68
     const base_05 = BaseDeCalculo > 4664.68
+
+    var QuantidadeDeDependentes = Number(document.getElementById('dependentes').value)
+    var ValorTotal = QuantidadeDeDependentes * DeducaoPorDependente
 
     if (base_01) {
         ValorDescontoIRRF = BaseDeCalculo * AliquotaIRRF[0] - ValorDeducaoIRRF[0]
@@ -131,10 +133,9 @@ function CalcularIRRF(BaseDeCalculo) {
         document.getElementById('DescontoIRRF').innerText = formatValue(ValorDescontoIRRF)
 
     } else if (base_05) {
-        ValorDescontoIRRF = BaseDeCalculo * AliquotaIRRF[4] - ValorDeducaoIRRF[4]
+        ValorDescontoIRRF = BaseDeCalculo * AliquotaIRRF[4] - ValorDeducaoIRRF[4] - ValorTotal
         document.getElementById('AliquotaIRRF').innerText = formatPercent((AliquotaIRRF[4] * 100))
         document.getElementById('DescontoIRRF').innerText = formatValue(ValorDescontoIRRF)
-
     }
     return ValorDescontoIRRF;
 }
@@ -146,8 +147,3 @@ function Relatorio() {
 function LimparTabela() {
     window.location.reload();
 }
-
-
-
-
-

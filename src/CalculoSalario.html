@@ -56,7 +56,6 @@
                     <input id="SalarioBruto" class="form-control" type="number" placeholder="0,00">
                 </div>
             </div>
-    
             <div class="form-group col-3">
                 <label for="">Outras Receitas</label>
                 <div class="input-group input-group-sm mb-4">
@@ -66,7 +65,6 @@
                     <input id="OutrasReceitas" class="form-control" type="number" placeholder="0,00">
                 </div>
             </div>
-
             <div class="form-group col-3">
                 <label for="">Outros Descontos</label>
                 <div class="input-group input-group-sm mb-4">
@@ -76,15 +74,13 @@
                     <input id="OutrosDescontos" class="form-control" type="number" placeholder="0,00">
                 </div>
             </div>
-
             <div class="form-group input-group-sm col-3">
                 <label>Vale Transporte</label>
                 <select id="valeTransporte" class="form-control col-12">
                     <option value="S">Sim</option>
-                    <option value="N">Não</option>
+                    <option value="N" selected>Não</option>
                 </select>
             </div>
-
             <div class="form-group col-3">
                 <label for="">Dependentes</label>
                 <div class="input-group input-group-sm mb-4">
@@ -95,17 +91,14 @@
                               </svg>
                         </span>
                     </div>
-                    <input id="dependentes" class="form-control" type="number" placeholder="0">
+                    <input id="dependentes" class="form-control" type="number" value="0">
                 </div>
             </div>
-
         </div>
-
         <div class="mb-5">
             <button onclick="CalcularSalario()" class="btn btn-primary btn-sm col-2" type="button">Calcular</button>
             <button onclick="LimparTabela()" class="btn btn-danger btn-sm col-2" type="reset">Limpar</button>
         </div>
-
         <div class="modal" id="modal-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -122,7 +115,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal" id="modal-2">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -139,13 +131,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -162,50 +147,42 @@
                         <td class="text-right" id="SalarioBrutoInput"></td>
                         <td></td>
                     </tr>
-
                     <tr>
                         <td>Outras Receitas</td>
                         <td></td>
                         <td></td>
                         <td class="text-right" id="OutrasReceitasInput" ></td>
                     </tr>
-
                     <tr>
                         <td>Vale Transporte</td>
                         <td></td>
                         <td></td>
                         <td class="text-right" id="ValeTransporteInput" ></td>
                     </tr>
-
                     <tr>
                         <td>Descontos</td>
                         <td></td>
                         <td></td>
                         <td class="text-right" id="OutrosDescontosInput" ></td>
                     </tr>
-
                     <tr>
                         <td>INSS</td>
                         <td id="AliquotaINSS"></td>
                         <td></td>
                         <td class="text-right" id="DescontoINSS"></td>
                     </tr>
-
                     <tr>
                         <td>IRRF</td>
                         <td id="AliquotaIRRF"></td>
                         <td></td>
                         <td class="text-right" id="DescontoIRRF"></td>
                     </tr>
-
                     <tr>
                         <td>Total de descontos</td>
                         <td></td>
                         <td></td>
                         <td class="text-right" id="TotalDescontos"></td>
                     </tr>
-
-
                     <tr>
                         <td>Salário Líquido</td>
                         <td></td>
@@ -216,7 +193,6 @@
             </table>
 
             <div class="d-flex mb-4">
-
                 <a href="#">
                     <div onclick="compartilharWhatsApp()">
                         <span>
@@ -226,7 +202,6 @@
                         </span>
                     </div>
                 </a>
-
                 <a href="#">
                     <div class="ml-4">
                         <span>
@@ -235,7 +210,6 @@
                             </svg>
                     </div>
                 </a>
-
                 <a href="#">
                     <div onclick="Relatorio()" class="ml-4">
                         <span>
@@ -246,7 +220,6 @@
                         </span>
                     </div>
                 </a>
-
                 <a href="#">
                     <div class="ml-4">
                         <span>
@@ -258,47 +231,28 @@
                     </div>
                 </a>
             </div>
-
-            <!-- <button onclick="Relatorio()" class="btn btn-info mb-4 col-2">Relatório</button> -->
-
             <div class="modal" id="modal-3">
-
                 <div class="modal-dialog modal-dialog-centered">
-        
-                    <div class="modal-content">
-        
+                    <div class="modal-content">      
                         <div class="modal-header bg-info">
-        
                             <div class="modal-title text-white text-uppercase"><strong>Atenção</strong></div>
                             <button class="close" type="button" data-dismiss="modal">
                                 <span class="text-white">&times;</span>
                             </button>
-    
                         </div>
-    
                         <div class="modal-body">
-        
                             <p>Em Desenvolvimento.</p>
-                            
                         </div>
-    
-
                     </div>
                 </div>
             </div>
             <h6>Os valores estão sendo calculados tendo como base as alíquotas de INSS e IR vigentes em 2023.</h6> 
         </div>
-          
     </div>
 
-    
-    
-
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-
-      <script src="../src/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../src/js/script.js"></script>
 </body>
 </html>
